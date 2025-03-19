@@ -45,6 +45,9 @@ class PostScreen extends StatelessWidget {
 
       case AsyncValueState.success:
         return PostCard(post: postValue.data!); // display the post
+
+      case AsyncValueState.empty:
+        return Text('No post found!');
     }
   }
 }
@@ -58,7 +61,12 @@ class PostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: post.map((p) => ListTile(title: Text(p.title), subtitle: Text(p.body))).toList(),
+        children:
+            post
+                .map(
+                  (p) => ListTile(title: Text(p.title), subtitle: Text(p.body)),
+                )
+                .toList(),
       ),
     );
   }
